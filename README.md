@@ -42,3 +42,13 @@ Handles channel-wise anomaly detection and masking in convolutional layers.
 ### Key functions:
 count_anomaly_neurons_per_channel: Counts anomalous neurons in each channel of convolutional layers.
 mask_top_10_percent_channels_by_weights: Masks the 10% most anomalous channels by setting their weights to zero.
+
+# Example Workflow
+Train a model and detect anomalies:
+Use train.py to fine-tune a pre-trained ResNet50 on CIFAR-10.
+Analyze the anomaly statistics printed during training.
+Test the model's robustness:
+Use test.py to evaluate the model on clean and adversarial inputs.
+Perform channel-wise analysis:
+Use conv.py to mask anomalous channels.
+Re-evaluate the model using the modified weights.
