@@ -13,3 +13,32 @@ Masks or modifies weights of channels with the highest anomaly scores.
 ### Evaluation:
 Evaluates the model's performance on both clean and adversarial inputs.
 Measures the impact of weights masking and fine-tuning on model accuracy.
+
+# Repository Structure
+## train.py
+Implements training and fine-tuning of a model to repair anomalous neurons and improve adversarial robustness.
+### Key functions:
+fine_tune_model: Fine-tunes specific layers with high anomaly counts.
+evaluate_model: Evaluates the model's accuracy on clean and adversarial datasets.
+## test.py
+Tests a pre-trained model's performance against adversarial attacks.
+### Key components:
+Loads pre-trained models (resnet18, resnet34, resnet50, etc.).
+Evaluates adversarial and clean accuracy using the evaluate_model function from train.py.
+## utils.py
+Contains utility functions for model analysis and layer-wise operations.
+### Key functions:
+get_model_layers: Extracts all valid layers from a model.
+get_layer_output: Captures intermediate outputs of specified layers.
+get_anomaly_neurons: Identifies neurons with abnormal activations based on thresholds or statistical methods.
+## neuron.py
+Focuses on neuron-level anomaly detection and handling.
+### Key components:
+Custom ImageDataset for loading datasets with labels.
+process_batch: Processes batches to identify misclassified or adversarial samples.
+save_results: Saves the evaluation results in JSON format.
+## conv.py
+Handles channel-wise anomaly detection and masking in convolutional layers.
+### Key functions:
+count_anomaly_neurons_per_channel: Counts anomalous neurons in each channel of convolutional layers.
+mask_top_10_percent_channels_by_weights: Masks the 10% most anomalous channels by setting their weights to zero.
